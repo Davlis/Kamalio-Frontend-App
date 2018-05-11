@@ -20,9 +20,11 @@ To build WWW deploy:
 ### Android
 
 To add Android platform run:
+
 `cordova platform add android`
 
 To build Android package:
+
 `cordova build android`
 
 Package will be build in
