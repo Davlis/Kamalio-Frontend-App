@@ -3,12 +3,11 @@ import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 
-
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-best',
+  templateUrl: 'best.html'
 })
-export class HomePage {
+export class BestPage {
 
   lon: number = 0.0;
   lat: number = 0.0;
@@ -36,5 +35,4 @@ export class HomePage {
       }
     });
   }
-
 }

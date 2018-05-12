@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 @Component({
-  selector: 'page-about',
-  templateUrl: 'about.html'
+  selector: 'page-most-commented',
+  templateUrl: 'most-commented.html'
 })
-export class AboutPage {
+export class MostCommentedPage {
 
   constructor(public navCtrl: NavController) {
 
