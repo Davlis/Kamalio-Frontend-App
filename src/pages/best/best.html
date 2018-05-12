@@ -8,9 +8,10 @@
 
 <ion-content padding>
   <h2>Welcome to Camelio!</h2>
-  <p>
-    Current location: {{lat}}, {{lon}},
-    <span *ngIf="reverseResult"> {{reverseResult.countryName}}, {{reverseResult.administrativeArea}}, {{reverseResult.locality}}, {{reverseResult.subLocality}}, {{reverseResult.thoroughfare}} {{reverseResult.subThoroughfare}}
-    </span>
+  <p *ngIf="result">
+    Current location: {{result.lat}}, {{result.lon}}, {{result.countryName}}, {{result.administrativeArea}}, {{result.locality}}, {{result.subLocality}}, {{result.thoroughfare}} {{result.subThoroughfare}}.
+  </p>
+  <p *ngIf="!result">
+    Cannot obtain location.
   </p>
 </ion-content>

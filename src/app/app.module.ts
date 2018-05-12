@@ -8,6 +8,8 @@ import { BestPage } from '../pages/best/best';
 import { MostCommentedPage } from '../pages/most-commented/most-commented';
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { GeolocationService } from '../+core/services';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -37,6 +39,7 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
   providers: [
     Geolocation,
     NativeGeocoder,
+    GeolocationService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
