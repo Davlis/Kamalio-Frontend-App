@@ -10,70 +10,77 @@ export class GeolocationService {
 
   public resultSubject: BehaviorSubject<GeolocationResultModel> = new BehaviorSubject(null);
 
-  private lon: number;
-  private lat: number;
+  private lon: number = 0;
+  private lat: number = 0;
   private reverseResult: any;
 
   constructor(private geolocation: Geolocation,
               private nativeGeocoder: NativeGeocoder,
               private platform: Platform) {
 
-    this.init();
+    this.platform.ready()
+      .then(readySource => this.init(readySource))
+      .catch(err => console.error(err));
   }
 
-  private init() {
+  private init(readySource: string) {
 
-    let watch = this.geolocation.watchPosition();
+    let watch = this.geolocation.watchPosition()
+      .filter((p) => p.coords !== undefined);
 
     watch.subscribe((data) => {
-      if (data && data.coords) {
 
-        this.lon = parseFloat(data.coords.longitude.toFixed(4));
-        this.lat = parseFloat(data.coords.latitude.toFixed(4));
+      this.lon = data.coords.longitude;
+      this.lat = data.coords.latitude;
 
-        if (this.platform.is('core')) {
+      if (readySource === 'dom') { // browser
 
-          this.reverseResult = {
-            countryName: 'Test Country',
-            administrativeArea: 'Test Administrative Area',
-            locality: 'Test Locality',
-            subLocality: 'Test SubLocality',
-            thoroughfare: 'Test Thoroughfare',
-            subThoroughfare: 'Test SubThoroughfare'
-          };
+        this.reverseResult = {
+          countryCode: 'TE',
+          countryName: 'Test Country',
+          postalCode: '00-000',
+          administrativeArea: 'Test Administrative Area',
+          subAdministrativeArea: 'Test SubAdministrative Area',
+          locality: 'Test Locality',
+          subLocality: 'Test SubLocality',
+          thoroughfare: 'Test Thoroughfare',
+          subThoroughfare: 'Test SubThoroughfare'
+        };
 
-          this.nextValue();
+        this.nextValue();
 
-        } else {
+      } else {
 
-          this.nativeGeocoder.reverseGeocode(this.lat, this.lon)
-            .then((result: NativeGeocoderReverseResult) => {
+        this.nativeGeocoder.reverseGeocode(this.lat, this.lon)
+          .then((result: NativeGeocoderReverseResult) => {
 
-              if (result[0]) {
-                this.reverseResult = result[0];
-              } else {
-                this.reverseResult = result;
-              }
+            if (result[0]) {
+              this.reverseResult = result[0];
+            } else {
+              this.reverseResult = result;
+            }
 
-              this.nextValue();
+            this.nextValue();
 
-            }).catch((error: any) => {
+          }).catch(err => {
 
-              console.error(error);
-
-              this.reverseResult = null;
-              this.nextValue();
-            });
-        }
+            console.error(err);
+            this.reverseResult = null
+            this.nextValue();
+          });
       }
+    }, (err) => {
+        console.error(err);
+        this.reverseResult = null;
+        this.nextValue();
     });
   }
 
   private nextValue() {
     if (this.reverseResult) {
       const value = {...this.reverseResult} as GeolocationResultModel;
-      value.lat = this.lat;
-      value.lon = this.lon;
+      value.lat = parseFloat(this.lat.toFixed(4));
+      value.lon = parseFloat(this.lon.toFixed(4));
 
       this.resultSubject.next(value);
     } else {
