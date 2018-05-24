@@ -6,7 +6,7 @@ Run:
 `npm install -g ionic`
 
 ## Getting started
-To run in browser:
+To run in browser (you need to run it at least once):
 
 `ionic serve`
 

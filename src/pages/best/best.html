@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Best
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Welcome to Camelio!</h2>
+  <p *ngIf="result">
+    Current location: {{result.lat}}, {{result.lon}}, {{result.countryName}}, {{result.administrativeArea}}, {{result.locality}}, {{result.subLocality}}, {{result.thoroughfare}} {{result.subThoroughfare}}.
+  </p>
+  <p *ngIf="!result">
+    Cannot obtain location.
+  </p>
+</ion-content>
