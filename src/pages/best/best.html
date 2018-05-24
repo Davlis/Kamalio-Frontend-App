@@ -1,17 +1,23 @@
 <ion-header>
   <ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-end large [navPush]="settingsPage">
+        1337
+        <ion-icon name="contact"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>
-      Best
+      {{loginService.get('locality', true)}} Best
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <h2>Welcome to Camelio!</h2>
-  <p *ngIf="result">
-    Current location: {{result.lat}}, {{result.lon}}, {{result.countryName}}, {{result.administrativeArea}}, {{result.locality}}, {{result.subLocality}}, {{result.thoroughfare}} {{result.subThoroughfare}}.
+  <p *ngIf="loginService.isLocation()">
+    Current location: {{loginService.get('lat')}}, {{loginService.get('lon')}}, {{loginService.get('countryName')}}, {{loginService.get('administrativeArea')}}, {{loginService.get('locality')}}, {{loginService.get('subLocality')}}, {{loginService.get('thoroughfare')}} {{loginService.get('subThoroughfare')}}.
   </p>
-  <p *ngIf="!result">
+  <p *ngIf="!loginService.isLocation()">
     Cannot obtain location.
   </p>
 </ion-content>

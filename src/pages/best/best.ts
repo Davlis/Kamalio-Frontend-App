@@ -1,32 +1,17 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Subscription } from 'rxjs';
-import { GeolocationService } from '../../+core/services';
-import { GeolocationResultModel } from '../../+core/models';
+import { LoginService } from '../../+core/services';
+import { ProfilePage } from '../profile/profile';
 
 @Component({
   selector: 'page-best',
   templateUrl: 'best.html'
 })
-export class BestPage implements OnInit, OnDestroy {
+export class BestPage {
 
-  public result: GeolocationResultModel;
-
-  private geolocationSubsciption: Subscription;
+  settingsPage = ProfilePage;
 
   constructor(public navCtrl: NavController,
-              public geolocationService: GeolocationService) {
-  }
-
-  public ngOnInit() {
-    this.geolocationSubsciption = this.geolocationService.resultSubject.subscribe(next => {
-      this.result = next;
-    });
-  }
-
-  public ngOnDestroy() {
-    if (this.geolocationSubsciption) {
-      this.geolocationSubsciption.unsubscribe();
-    }
+              public loginService: LoginService) {
   }
 }
