@@ -1,0 +1,11 @@
+<ion-navbar>
+  <ion-buttons end>
+    <button ion-button icon-end large [navPush]="settingsPage">
+      1337
+      <ion-icon name="contact"></ion-icon>
+    </button>
+  </ion-buttons>
+  <ion-title>
+    {{loginService.get('locality', true)}}<ng-content></ng-content>
+  </ion-title>
+</ion-navbar>

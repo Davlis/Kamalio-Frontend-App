@@ -11,6 +11,7 @@ import { MostCommentedPage } from '../pages/most-commented/most-commented';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { GeolocationService, LoginService } from '../+core/services';
+import { ListHeaderComponent } from '../+core/components';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,6 +23,7 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
   declarations: [
     MyApp,
     ProfilePage,
+    ListHeaderComponent,
     LatestPage,
     BestPage,
     MostCommentedPage,
@@ -35,6 +37,7 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
   entryComponents: [
     MyApp,
     ProfilePage,
+    ListHeaderComponent,
     LatestPage,
     BestPage,
     MostCommentedPage,

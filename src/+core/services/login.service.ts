@@ -27,7 +27,7 @@ export class LoginService {
   public get(thing: string, forHeader: boolean = false): string | null {
     if (this.result && this.result[thing]) {
       let value = this.result[thing];
-      value += forHeader ? ' -' : '';
+      value += forHeader ? ' - ' : '';
 
       return value;
     } else {
