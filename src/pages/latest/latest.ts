@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { LoginService } from '../../+core/services';
+import { ProfilePage } from '../profile/profile';
 
 @Component({
   selector: 'page-latest',
@@ -7,7 +9,9 @@ import { NavController } from 'ionic-angular';
 })
 export class LatestPage {
 
-  constructor(public navCtrl: NavController) {
+  settingsPage = ProfilePage;
 
+  constructor(public navCtrl: NavController,
+              public loginService: LoginService) {
   }
 }
