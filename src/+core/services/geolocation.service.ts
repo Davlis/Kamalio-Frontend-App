@@ -76,15 +76,31 @@ export class GeolocationService {
     });
   }
 
-  private nextValue() {
+  public getReverseLocation() {
     if (this.reverseResult) {
       const value = {...this.reverseResult} as GeolocationResultModel;
       value.lat = parseFloat(this.lat.toFixed(4));
       value.lon = parseFloat(this.lon.toFixed(4));
 
-      this.resultSubject.next(value);
+      return value;
     } else {
-      this.resultSubject.next(null);
+      return null;
     }
+  }
+
+  public getLocation() {
+    if (this.lat && this.lon) {
+      return {
+        lat: this.lat,
+        lon: this.lon
+      };
+    } else {
+      return null;
+    }
+  }
+
+  private nextValue() {
+    const value = this.getReverseLocation();
+    this.resultSubject.next(value);
   }
 }
