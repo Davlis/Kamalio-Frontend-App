@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { LoginService } from '../../+core/services';
+import { LoginService, PostService } from '../../+core/services';
+import { Post } from '../../+core/models';
 import { ProfilePage } from '../profile/profile';
 
 @Component({
@@ -9,9 +10,17 @@ import { ProfilePage } from '../profile/profile';
 })
 export class LatestPage {
 
-  settingsPage = ProfilePage;
+  public settingsPage = ProfilePage;
+  public latestPosts: Post[];
+
+  private query = { date: 1 };
 
   constructor(public navCtrl: NavController,
-              public loginService: LoginService) {
+              public loginService: LoginService,
+              public postService: PostService) {
+  }
+
+  public ngOnInit() {
+    this.latestPosts = this.postService.getPosts(this.query);
   }
 }

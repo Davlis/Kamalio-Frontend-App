@@ -10,8 +10,8 @@ import { BestPage } from '../pages/best/best';
 import { MostCommentedPage } from '../pages/most-commented/most-commented';
 import { TabsPage } from '../pages/tabs/tabs';
 
-import { GeolocationService, LoginService } from '../+core/services';
-import { ListHeaderComponent } from '../+core/components';
+import { GeolocationService, LoginService, PostService } from '../+core/services';
+import { ListHeaderComponent, PostListComponent } from '../+core/components';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,11 +19,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
+import { MomentModule } from 'ngx-moment';
+
 @NgModule({
   declarations: [
     MyApp,
     ProfilePage,
     ListHeaderComponent,
+    PostListComponent,
     LatestPage,
     BestPage,
     MostCommentedPage,
@@ -31,13 +34,15 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    MomentModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     ProfilePage,
     ListHeaderComponent,
+    PostListComponent,
     LatestPage,
     BestPage,
     MostCommentedPage,
@@ -48,6 +53,7 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
     NativeGeocoder,
     GeolocationService,
     LoginService,
+    PostService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

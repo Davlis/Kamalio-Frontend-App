@@ -3,11 +3,5 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Camelio!</h2>
-  <p *ngIf="loginService.isLocation()">
-    Current location: {{loginService.get('lat')}}, {{loginService.get('lon')}}, {{loginService.get('countryName')}}, {{loginService.get('administrativeArea')}}, {{loginService.get('locality')}}, {{loginService.get('subLocality')}}, {{loginService.get('thoroughfare')}} {{loginService.get('subThoroughfare')}}.
-  </p>
-  <p *ngIf="!loginService.isLocation()">
-    Cannot obtain location.
-  </p>
+  <post-list [posts]="bestPosts"></post-list>
 </ion-content>
