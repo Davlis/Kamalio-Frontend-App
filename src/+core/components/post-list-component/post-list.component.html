@@ -1,0 +1,33 @@
+<ion-card *ngFor="let p of posts">
+
+  <ion-item>
+    <h2>{{p.title}}</h2>
+    <ion-note>
+      {{p.date | amTimeAgo}}
+    </ion-note>
+  </ion-item>
+
+  <img *ngIf="p.thumbPhotoUrl" [src]="p.thumbPhotoUrl">
+
+  <ion-card-content>
+    <p>{{p.description}}</p>
+  </ion-card-content>
+
+  <ion-row class="bottom-row">
+    <ion-col>
+      <button ion-button icon-left clear small [class.active]="">
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>{{p.upvotes}}</div>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="text"></ion-icon>
+        <div>{{p.comments}}</div>
+      </button>
+    </ion-col>
+    <ion-col center text-center>
+    </ion-col>
+  </ion-row>
+
+</ion-card>
