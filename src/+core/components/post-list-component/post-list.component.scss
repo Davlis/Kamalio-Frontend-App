@@ -1,3 +1,32 @@
+.post-card {
+    cursor: pointer;
+}
+
 .bottom-row button:not(.active) {
     color: #aaa;
+}
+
+.title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+    .horizontal-view {
+        display: none;
+    }}
+
+@media (min-width: 481px) {
+    .vertical-view {
+        display: none;
+    }
+
+    .horizontal-view {
+        .image-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
 }
