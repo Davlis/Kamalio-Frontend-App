@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
-import { Toast } from '@ionic-native/toast';
 import { TablessPage } from '../../+core/components/tabless-page-component';
 import { PostService } from '../../+core/services';
 import { Post } from '../../+core/models';
