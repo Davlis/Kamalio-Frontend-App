@@ -9,7 +9,7 @@ import { ProfilePage } from '../../../pages/profile/profile';
 })
 export class ListHeaderComponent {
 
-  settingsPage = ProfilePage;
+  profilePage = ProfilePage;
 
   constructor(public loginService: LoginService) {
   }

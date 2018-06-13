@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LoginService, PostService } from '../../+core/services';
 import { Post } from '../../+core/models';
@@ -20,7 +20,7 @@ export class MostCommentedPage {
               public postService: PostService) {
   }
 
-  public ngOnInit() {
+  public ionViewWillEnter() {
     this.commentedPosts = this.postService.getPosts(this.query);
   }
 }

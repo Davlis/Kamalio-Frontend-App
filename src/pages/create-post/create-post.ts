@@ -24,7 +24,7 @@ export class CreatePostPage extends TablessPage {
         this.post.description = '';
         const toast = this.toastCtrl.create({
           message: 'Post created',
-          duration: 3000,
+          duration: 2500,
           position: 'bottom',
           showCloseButton: true
         });
@@ -35,7 +35,7 @@ export class CreatePostPage extends TablessPage {
       }).catch(err => {
         const toast = this.toastCtrl.create({
           message: 'Error while creating post',
-          duration: 3000,
+          duration: 2500,
           position: 'bottom',
           showCloseButton: true
         });

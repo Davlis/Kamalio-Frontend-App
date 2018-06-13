@@ -10,6 +10,11 @@ export class LoginService {
   public result: GeolocationResultModel;
   private geolocationSubsciption: Subscription;
 
+  public user = {
+    id: "usera",
+    karma: 1337
+  };
+
   constructor(private geolocationService: GeolocationService,
               private device: Device) {
 

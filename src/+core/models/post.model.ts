@@ -3,7 +3,7 @@ export class Post {
   userId: string;
   title: string;
   date: string;
-  thumbPhotoUrl: string;
+  thumbPhotoUrl?: string;
   photoUrl?: string;
   description: string;
   upvotes: number;

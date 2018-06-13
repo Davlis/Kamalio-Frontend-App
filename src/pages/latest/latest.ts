@@ -20,7 +20,7 @@ export class LatestPage {
               public postService: PostService) {
   }
 
-  public ngOnInit() {
+  public ionViewWillEnter() {
     this.latestPosts = this.postService.getPosts(this.query);
   }
 }
