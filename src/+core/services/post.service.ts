@@ -55,6 +55,12 @@ export class PostService {
     });
   }
 
+  public createPost(post: Post) {
+    return new Promise((resolve, reject) => {
+      resolve();
+    });
+  }
+
   public changeUpvote(id: string) {
     const post = this.posts.find(el => el.id === id);
 
