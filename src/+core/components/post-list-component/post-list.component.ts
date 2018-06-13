@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { PostService } from '../../services';
 import { Post } from '../../models';
 
 @Component({
@@ -10,6 +11,6 @@ export class PostListComponent {
 
   @Input() public posts: Post[];
 
-  constructor() {
+  constructor(public postService: PostService) {
   }
 }
