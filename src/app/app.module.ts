@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { ProfilePage } from '../pages/profile/profile';
+import { PostViewPage } from '../pages/post-view/post-view';
 
 import { LatestPage } from '../pages/latest/latest';
 import { BestPage } from '../pages/best/best';
@@ -25,6 +26,7 @@ import { MomentModule } from 'ngx-moment';
   declarations: [
     MyApp,
     ProfilePage,
+    PostViewPage,
     ListHeaderComponent,
     PostListComponent,
     LatestPage,
@@ -41,6 +43,7 @@ import { MomentModule } from 'ngx-moment';
   entryComponents: [
     MyApp,
     ProfilePage,
+    PostViewPage,
     ListHeaderComponent,
     PostListComponent,
     LatestPage,
