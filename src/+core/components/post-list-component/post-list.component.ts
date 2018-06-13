@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PostService } from '../../services';
 import { Post } from '../../models';
+import { PostViewPage } from '../../../pages/post-view/post-view';
 
 @Component({
   selector: 'post-list',
@@ -9,9 +10,18 @@ import { Post } from '../../models';
 })
 export class PostListComponent {
 
+  public postPage = PostViewPage;
+
   @Input() public posts: Post[];
-  console = console;
 
   constructor(public postService: PostService) {
+  }
+
+  getShortenedDescription(description: string) {
+    if (description.length > 140) {
+      description = description.slice(0, 137) + '...';
+    }
+
+    return description;
   }
 }

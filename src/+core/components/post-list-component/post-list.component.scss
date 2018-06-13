@@ -1,5 +1,7 @@
 .post-card {
     cursor: pointer;
+    margin: 10px 0;
+    width: 100%;
 }
 
 .bottom-row button:not(.active) {
@@ -12,6 +14,11 @@
     white-space: nowrap;
 }
 
+.comments-button {
+    pointer-events: none;
+    pointer: default;
+}
+
 @media (max-width: 480px) {
     .horizontal-view {
         display: none;
@@ -21,14 +28,4 @@
     .vertical-view {
         display: none;
     }
-
-    .horizontal-view {
-        .image-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    }
 }
-
-// @TODO: Remove padding and margin from list view

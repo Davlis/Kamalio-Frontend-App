@@ -1,5 +1,6 @@
 export class Post {
   id: string;
+  userId: string;
   title: string;
   date: string;
   thumbPhotoUrl: string;

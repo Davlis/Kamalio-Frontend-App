@@ -11,7 +11,7 @@ import { BestPage } from '../pages/best/best';
 import { MostCommentedPage } from '../pages/most-commented/most-commented';
 import { TabsPage } from '../pages/tabs/tabs';
 
-import { GeolocationService, LoginService, PostService } from '../+core/services';
+import { GeolocationService, LoginService, PostService, CommentService } from '../+core/services';
 import { ListHeaderComponent, PostListComponent } from '../+core/components';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -57,6 +57,7 @@ import { MomentModule } from 'ngx-moment';
     GeolocationService,
     LoginService,
     PostService,
+    CommentService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
