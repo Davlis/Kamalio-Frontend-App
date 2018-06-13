@@ -53,7 +53,7 @@
     </ion-row>
     <hr class="comments-line">
     <ion-row *ngFor="let c of comments">
-      <ion-item class="message-container">
+      <ion-item class="message-container" [class.op]="c.userId === post.userId">
         <span>{{c.date | amTimeAgo}}</span><br /><br />
         {{c.message}}
       </ion-item>
