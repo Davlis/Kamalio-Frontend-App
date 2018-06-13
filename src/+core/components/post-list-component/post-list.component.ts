@@ -10,6 +10,7 @@ import { Post } from '../../models';
 export class PostListComponent {
 
   @Input() public posts: Post[];
+  console = console;
 
   constructor(public postService: PostService) {
   }

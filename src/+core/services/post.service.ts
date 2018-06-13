@@ -8,7 +8,7 @@ export class PostService {
     title: 'Title',
     date: '2018-06-12T00:16:06.067Z',
     thumbPhotoUrl: 'https://ionicframework.com/dist/preview-app/www/assets/img/advance-card-bttf.png',
-    description: 'Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.',
+    description: 'Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy. This a longer description, so it\'s cutted.',
     upvotes: 12,
     comments: 4,
     active: false
@@ -33,7 +33,13 @@ export class PostService {
   }];
 
   public getPosts(query?: any): Post[] {
-    return this.posts.sort((a, b) => {
+    return this.posts.map((el: Post) => {
+        if (el.description.length > 140) {
+          el.description = el.description.slice(0, 137) + '...';
+        }
+
+        return el;
+      }).sort((a, b) => {
       if (query.upvotes) {
         return b.upvotes - a.upvotes;
       } else if (query.comments) {
