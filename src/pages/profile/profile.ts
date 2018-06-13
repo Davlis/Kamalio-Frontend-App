@@ -1,23 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { TablessPage } from '../../+core/components/tabless-page-component';
 
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html'
 })
-export class ProfilePage {
-
-  private tabBarElement: any;
+export class ProfilePage extends TablessPage {
 
   constructor(public navCtrl: NavController) {
-    this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
-  }
-
-  public ionViewWillEnter() {
-    this.tabBarElement.style.display = 'none';
-  }
-
-  public ionViewWillLeave() {
-    this.tabBarElement.style.display = 'flex';
+    super();
   }
 }
