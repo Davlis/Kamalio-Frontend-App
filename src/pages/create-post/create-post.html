@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar color="yellow">
+    <ion-title>
+      Create post
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary" stacked>Title</ion-label>
+      <ion-input type="text" placeholder="Title" [(ngModel)]="post.title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Description</ion-label>
+      <ion-textarea placeholder="Your message..." rows="8" [(ngModel)]="post.description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <button ion-button default full color="primary" (click)="createPost()">Send</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

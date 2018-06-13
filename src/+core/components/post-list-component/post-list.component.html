@@ -1,6 +1,6 @@
-<ion-card *ngFor="let p of posts" class="post-card" (click)="console.log('card click')">
+<ion-card *ngFor="let p of posts" class="post-card" [navPush]="postPage" [navParams]="p">
   <ion-row class="horizontal-view">
-    <ion-col col-4 class="image-container">
+    <ion-col col-4>
 
       <img *ngIf="p.thumbPhotoUrl" [src]="p.thumbPhotoUrl">
 
@@ -14,7 +14,7 @@
       </ion-item>
 
       <ion-card-content>
-        <p>{{p.description}}</p>
+        <p>{{getShortenedDescription(p.description)}}</p>
       </ion-card-content>
 
       <ion-row class="bottom-row">
@@ -25,7 +25,7 @@
           </button>
         </ion-col>
         <ion-col>
-          <button ion-button icon-left clear small (click)="$event.stopPropagation()">
+          <button ion-button icon-left clear small class="disable-hover comments-button" (click)="$event.stopPropagation()">
             <ion-icon name="text"></ion-icon>
             <div>{{p.comments}}</div>
           </button>
@@ -47,7 +47,7 @@
     <img *ngIf="p.thumbPhotoUrl" [src]="p.thumbPhotoUrl">
 
     <ion-card-content>
-      <p>{{p.description}}</p>
+      <p>{{getShortenedDescription(p.description)}}</p>
     </ion-card-content>
 
     <ion-row class="bottom-row">
@@ -58,7 +58,7 @@
         </button>
       </ion-col>
       <ion-col>
-        <button ion-button icon-left clear small (click)="$event.stopPropagation()">
+        <button ion-button icon-left clear small  class="disable-hover comments-button" (click)="$event.stopPropagation()">
           <ion-icon name="text"></ion-icon>
           <div>{{p.comments}}</div>
         </button>

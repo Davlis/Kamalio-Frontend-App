@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar color="yellow">
+    <ion-title>
+      Comments
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="post-container">
+    <ion-row>
+      <ion-col col-3 class="image-container">
+        <img *ngIf="post.thumbPhotoUrl" [src]="post.thumbPhotoUrl">
+      </ion-col>
+      <ion-col class="info-container">
+        <ion-item>
+          <h2 class="title">{{post.title}}</h2>
+          <ion-note>
+            {{post.date | amTimeAgo}}
+          </ion-note>
+        </ion-item>
+        <ion-row class="bottom-row">
+          <ion-col>
+            <button ion-button icon-left clear small [class.active]="post.active" (click)="$event.stopPropagation(); postService.changeUpvote(post.id)">
+              <ion-icon name="thumbs-up"></ion-icon>
+              <div>{{post.upvotes}}</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-left clear small class="disable-hover comments-button" (click)="$event.stopPropagation()">
+              <ion-icon name="text"></ion-icon>
+              <div>{{post.comments}}</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-right clear small class="right-button" (click)="$event.stopPropagation();">
+              <ion-icon name="create"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-right clear small class="right-button" (click)="$event.stopPropagation();">
+              <ion-icon name="undo"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <hr>
+    <ion-row>
+      <ion-item class="description-container">
+        {{post.description}}
+      </ion-item>
+    </ion-row>
+    <hr class="comments-line">
+    <ion-row *ngFor="let c of comments">
+      <ion-item class="message-container">
+        <span>{{c.date | amTimeAgo}}</span><br /><br />
+        {{c.message}}
+      </ion-item>
+    </ion-row>
+  </ion-card>
+</ion-content>

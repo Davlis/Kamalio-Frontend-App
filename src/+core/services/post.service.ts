@@ -4,7 +4,8 @@ import { Post } from '../models';
 @Injectable()
 export class PostService {
   private posts = [{
-    id: "ddd1",
+    id: 'ddd1',
+    userId: 'usera',
     title: 'Title',
     date: '2018-06-12T00:16:06.067Z',
     thumbPhotoUrl: 'https://ionicframework.com/dist/preview-app/www/assets/img/advance-card-bttf.png',
@@ -13,7 +14,8 @@ export class PostService {
     comments: 4,
     active: false
   }, {
-    id: "ddd2",
+    id: 'ddd2',
+    userId: 'usera',
     title: 'Title 2',
     date: '2018-06-11T00:16:06.067Z',
     thumbPhotoUrl: 'https://ionicframework.com/dist/preview-app/www/assets/img/advance-card-bttf.png',
@@ -22,7 +24,8 @@ export class PostService {
     comments: 7,
     active: true
   }, {
-    id: "ddd3",
+    id: 'ddd3',
+    userId: 'usera',
     title: 'Title 3',
     date: '2018-06-09T00:16:06.067Z',
     thumbPhotoUrl: 'https://ionicframework.com/dist/preview-app/www/assets/img/advance-card-bttf.png',
@@ -33,13 +36,7 @@ export class PostService {
   }];
 
   public getPosts(query?: any): Post[] {
-    return this.posts.map((el: Post) => {
-        if (el.description.length > 140) {
-          el.description = el.description.slice(0, 137) + '...';
-        }
-
-        return el;
-      }).sort((a, b) => {
+    return this.posts.sort((a, b) => {
       if (query.upvotes) {
         return b.upvotes - a.upvotes;
       } else if (query.comments) {
@@ -55,6 +52,12 @@ export class PostService {
       } else {
         return 0;
       }
+    });
+  }
+
+  public createPost(post: Post) {
+    return new Promise((resolve, reject) => {
+      resolve();
     });
   }
 

@@ -1,0 +1,52 @@
+post-view {
+
+}
+
+.scroll-content {
+    padding: 0 !important;
+}
+
+.post-container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    box-shadow: none;
+}
+
+.info-container {
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+}
+
+.description-container ion-label {
+    white-space: inherit;
+    text-overflow: inherit;
+}
+
+.comments-line {
+    background-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+.message-container {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    ion-label {
+        white-space: inherit;
+        text-overflow: inherit;
+        font-size: 13px;
+    }
+
+    span {
+        color: #c5c5c5;
+    }
+}
+
+.right-button {
+    text-align: right;
+}
+
+.image-container {
+    padding-top: 12px;
+    padding-left: 12px;
+}
