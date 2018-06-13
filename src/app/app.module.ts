@@ -3,13 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { ProfilePage } from '../pages/profile/profile';
-import { PostViewPage } from '../pages/post-view/post-view';
-
-import { LatestPage } from '../pages/latest/latest';
-import { BestPage } from '../pages/best/best';
-import { MostCommentedPage } from '../pages/most-commented/most-commented';
-import { TabsPage } from '../pages/tabs/tabs';
+import {
+  CreatePostPage,
+  ProfilePage,
+  PostViewPage,
+  LatestPage,
+  BestPage,
+  MostCommentedPage,
+  TabsPage
+} from '../pages';
 
 import { GeolocationService, LoginService, PostService, CommentService } from '../+core/services';
 import { ListHeaderComponent, PostListComponent } from '../+core/components';
@@ -26,6 +28,7 @@ import { MomentModule } from 'ngx-moment';
   declarations: [
     MyApp,
     ProfilePage,
+    CreatePostPage,
     PostViewPage,
     ListHeaderComponent,
     PostListComponent,
@@ -42,6 +45,7 @@ import { MomentModule } from 'ngx-moment';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    CreatePostPage,
     ProfilePage,
     PostViewPage,
     ListHeaderComponent,
