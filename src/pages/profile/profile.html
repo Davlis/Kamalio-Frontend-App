@@ -11,8 +11,8 @@
     <ion-item class="contact-container">
       <ion-icon name="contact"></ion-icon>
     </ion-item>
-    <ion-item class="karma-container" *ngIf="loginService.user?.karma">
-      Karma: {{loginService.user.karma}}
+    <ion-item class="karma-container" *ngIf="loginService.user">
+      Karma: {{loginService.karma}}
     </ion-item>
   </ion-list>
 </ion-content>

@@ -1,8 +1,10 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
 import { MyApp } from './app.component';
+import { EnvironmentsModule } from '../environment';
 
 import {
   CreatePostPage,
@@ -14,7 +16,14 @@ import {
   TabsPage
 } from '../pages';
 
-import { GeolocationService, LoginService, PostService, CommentService } from '../+core/services';
+import {
+  GeolocationService,
+  LoginService,
+  PostService,
+  CommentService,
+  TokenService,
+  DataService
+} from '../+core/services';
 import { ListHeaderComponent, PostListComponent } from '../+core/components';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -40,7 +49,9 @@ import { MomentModule } from 'ngx-moment';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
+    EnvironmentsModule,
     MomentModule
   ],
   bootstrap: [IonicApp],
@@ -64,6 +75,8 @@ import { MomentModule } from 'ngx-moment';
     LoginService,
     PostService,
     CommentService,
+    TokenService,
+    DataService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

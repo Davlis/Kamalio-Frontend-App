@@ -1,10 +1,5 @@
 <ion-card *ngFor="let p of posts" class="post-card" [navPush]="postPage" [navParams]="p">
   <ion-row class="horizontal-view">
-    <ion-col col-4>
-
-      <img *ngIf="p.thumbPhotoUrl" [src]="p.thumbPhotoUrl">
-
-    </ion-col>
     <ion-col>
       <ion-item>
         <h2 class="title">{{p.title}}</h2>
@@ -33,6 +28,11 @@
         <ion-col center text-center>
         </ion-col>
       </ion-row>
+    </ion-col>
+    <ion-col col-4 *ngIf="p.thumbPhotoUrl">
+
+      <img [src]="p.thumbPhotoUrl">
+
     </ion-col>
   </ion-row>
 
