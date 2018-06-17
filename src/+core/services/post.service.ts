@@ -1,49 +1,27 @@
 import { Injectable } from '@angular/core';
+import { DataService } from './data.service';
 import { Post } from '../models';
 
 @Injectable()
 export class PostService {
-  private posts = [{
-    id: 'ddd1',
-    userId: 'usera',
-    title: 'Title',
-    date: '2018-06-12T00:16:06.067Z',
-    thumbPhotoUrl: 'http://pop.h-cdn.co/assets/15/19/1600x800/landscape-1430936484-mars-pathfinder.jpg',
-    description: 'Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy. This a longer description, so it\'s cutted.',
-    upvotes: 12,
-    comments: 4,
-    active: false
-  }, {
-    id: 'ddd2',
-    userId: 'usera',
-    title: 'Title 2',
-    date: '2018-06-11T00:16:06.067Z',
-    description: 'Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.',
-    upvotes: 2,
-    comments: 7,
-    active: true
-  }, {
-    id: 'ddd3',
-    userId: 'usera',
-    title: 'Title 3',
-    date: '2018-06-09T00:16:06.067Z',
-    thumbPhotoUrl: 'https://ionicframework.com/dist/preview-app/www/assets/img/advance-card-bttf.png',
-    description: 'Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.',
-    upvotes: 18,
-    comments: 5,
-    active: false
-  }];
 
-  public getPosts(query?: any): Post[] {
-    return this.posts.sort((a, b) => {
-      if (query.upvotes) {
-        return b.upvotes - a.upvotes;
-      } else if (query.comments) {
-        return b.comments - a.comments;
-      } else if (query.date) {
-        if (b.date > a.date) {
+  private currentPosts: Post[] = [];
+
+  constructor(private dataService: DataService) {
+  }
+
+  public async getPosts(query: any): Promise<Post[]> {
+    this.currentPosts = (await this.dataService.getQueryData('posts', query)).rows;
+
+    return this.currentPosts.sort((a, b) => {
+      if (query.rating) {
+        return b.rating - a.rating;
+      } else if (query.commentCount) {
+        return b.commentCount - a.commentCount;
+      } else if (query.createdAt) {
+        if (b.createdAt > a.createdAt) {
           return 1;
-        } else if(b.date < a.date) {
+        } else if(b.createdAt < a.createdAt) {
           return -1;
         } else {
           return 0;
@@ -56,16 +34,16 @@ export class PostService {
 
   public createPost(post: Post) {
     return new Promise((resolve, reject) => {
-      resolve();
+      return this.dataService.postData('posts', post);
     });
   }
 
   public changeUpvote(id: string) {
-    const post = this.posts.find(el => el.id === id);
+    const post = this.currentPosts.find(el => el.id === id);
 
     if (post) {
       post.active = !post.active;
-      post.upvotes += post.active ? 1 : -1;
+      post.rating += post.active ? 1 : -1;
     }
   }
 }

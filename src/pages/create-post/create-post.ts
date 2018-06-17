@@ -21,7 +21,7 @@ export class CreatePostPage extends TablessPage {
     this.postService.createPost(this.post)
       .then(() => {
         this.post.title = '';
-        this.post.description = '';
+        this.post.content = '';
         const toast = this.toastCtrl.create({
           message: 'Post created',
           duration: 2500,

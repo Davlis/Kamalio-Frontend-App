@@ -13,14 +13,20 @@ export class MostCommentedPage {
   public settingsPage = ProfilePage;
   public commentedPosts: Post[];
 
-  private query = { comments: 1 };
-
   constructor(public navCtrl: NavController,
               public loginService: LoginService,
               public postService: PostService) {
   }
 
-  public ionViewWillEnter() {
-    this.commentedPosts = this.postService.getPosts(this.query);
+  public async ionViewWillEnter() {
+    await this.loginService.ready();
+
+    const query = {
+      latitude: this.loginService.get('lat'),
+      longitude: this.loginService.get('lon'),
+      section: 'LOUDEST'
+    };
+
+    this.commentedPosts = await this.postService.getPosts(query);
   }
 }

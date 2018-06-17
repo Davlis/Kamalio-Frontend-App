@@ -17,11 +17,11 @@ export class PostListComponent {
   constructor(public postService: PostService) {
   }
 
-  getShortenedDescription(description: string) {
-    if (description.length > 140) {
-      description = description.slice(0, 137) + '...';
+  public getShortenedContent(content: string) {
+    if (content.length > 140) {
+      content = content.slice(0, 137) + '...';
     }
 
-    return description;
+    return content;
   }
 }

@@ -4,25 +4,25 @@
       <ion-item>
         <h2 class="title">{{p.title}}</h2>
         <ion-note>
-          {{p.date | amTimeAgo}}
+          {{p.createdAt | amTimeAgo}}
         </ion-note>
       </ion-item>
 
       <ion-card-content>
-        <p>{{getShortenedDescription(p.description)}}</p>
+        <p>{{getShortenedContent(p.content)}}</p>
       </ion-card-content>
 
       <ion-row class="bottom-row">
         <ion-col>
           <button ion-button icon-left clear small [class.active]="p.active" (click)="$event.stopPropagation(); postService.changeUpvote(p.id)">
             <ion-icon name="thumbs-up"></ion-icon>
-            <div>{{p.upvotes}}</div>
+            <div>{{p.rating}}</div>
           </button>
         </ion-col>
         <ion-col>
           <button ion-button icon-left clear small class="disable-hover comments-button" (click)="$event.stopPropagation()">
             <ion-icon name="text"></ion-icon>
-            <div>{{p.comments}}</div>
+            <div>{{p.commentCount}}</div>
           </button>
         </ion-col>
         <ion-col center text-center>
@@ -40,27 +40,27 @@
     <ion-item>
       <h2 class="title">{{p.title}}</h2>
       <ion-note>
-        {{p.date | amTimeAgo}}
+        {{p.createdAt | amTimeAgo}}
       </ion-note>
     </ion-item>
 
     <img *ngIf="p.thumbPhotoUrl" [src]="p.thumbPhotoUrl">
 
     <ion-card-content>
-      <p>{{getShortenedDescription(p.description)}}</p>
+      <p>{{getShortenedContent(p.content)}}</p>
     </ion-card-content>
 
     <ion-row class="bottom-row">
       <ion-col>
         <button ion-button icon-left clear small [class.active]="p.active" (click)="$event.stopPropagation(); postService.changeUpvote(p.id)">
           <ion-icon name="thumbs-up"></ion-icon>
-          <div>{{p.upvotes}}</div>
+          <div>{{p.rating}}</div>
         </button>
       </ion-col>
       <ion-col>
         <button ion-button icon-left clear small  class="disable-hover comments-button" (click)="$event.stopPropagation()">
           <ion-icon name="text"></ion-icon>
-          <div>{{p.comments}}</div>
+          <div>{{p.commentCount}}</div>
         </button>
       </ion-col>
       <ion-col center text-center>

@@ -3,5 +3,5 @@ export class User {
   deviceId: string;
   platform: 'android' | 'ios';
   createdAt: string;
-  updatedAt: string;
+  updatedAt?: string;
 }

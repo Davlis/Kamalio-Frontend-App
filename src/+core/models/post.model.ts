@@ -2,11 +2,14 @@ export class Post {
   id: string;
   userId: string;
   title: string;
-  date: string;
-  thumbPhotoUrl?: string;
+  content: string;
   photoUrl?: string;
-  description: string;
-  upvotes: number;
-  comments: number;
+  rating: number;
+  commentCount: number;
+  createdAt: string;
+  updatedAt?: string;
+
+  thumbPhotoUrl?: string;
+
   active?: boolean;
 }

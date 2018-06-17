@@ -27,6 +27,22 @@ export class LoginService {
     this.init();
   }
 
+  public ready() {
+    return new Promise(resolve => {
+      const timeout = () => {
+        setTimeout(() => {
+          if (this.result) {
+            resolve();
+          } else {
+            timeout();
+          }
+        }, 100);
+      };
+
+      timeout();
+    });
+  }
+
   private async init() {
     await this.logIn();
 
@@ -75,7 +91,6 @@ export class LoginService {
       this.tokenService.accessToken = result.token.accessToken;
       this.tokenService.refreshToken = result.token.refreshToken;
       return this.getKarma();
-      return Promise.resolve();
     }).catch(async err => {
       setTimeout(async () => {
         await this.tryLogIn(deviceId, platform);

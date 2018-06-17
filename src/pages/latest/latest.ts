@@ -13,14 +13,20 @@ export class LatestPage {
   public settingsPage = ProfilePage;
   public latestPosts: Post[];
 
-  private query = { date: 1 };
-
   constructor(public navCtrl: NavController,
               public loginService: LoginService,
               public postService: PostService) {
   }
 
-  public ionViewWillEnter() {
-    this.latestPosts = this.postService.getPosts(this.query);
+  public async ionViewWillEnter() {
+    await this.loginService.ready();
+
+    const query = {
+      latitude: this.loginService.get('lat'),
+      longitude: this.loginService.get('lon'),
+      section: 'LATEST'
+    };
+
+    this.latestPosts = await this.postService.getPosts(query);
   }
 }
