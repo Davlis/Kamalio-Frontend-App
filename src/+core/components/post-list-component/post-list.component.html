@@ -14,7 +14,7 @@
 
       <ion-row class="bottom-row">
         <ion-col>
-          <button ion-button icon-left clear small [class.active]="p.active" (click)="$event.stopPropagation(); postService.changeUpvote(p.id)">
+          <button ion-button icon-left clear small [class.active]="p.myVote === 1" (click)="$event.stopPropagation(); postService.changeUpvote(p)">
             <ion-icon name="thumbs-up"></ion-icon>
             <div>{{p.rating}}</div>
           </button>
@@ -52,7 +52,7 @@
 
     <ion-row class="bottom-row">
       <ion-col>
-        <button ion-button icon-left clear small [class.active]="p.active" (click)="$event.stopPropagation(); postService.changeUpvote(p.id)">
+        <button ion-button icon-left clear small [class.active]="p.myVote === 1" (click)="$event.stopPropagation(); postService.changeUpvote(p)">
           <ion-icon name="thumbs-up"></ion-icon>
           <div>{{p.rating}}</div>
         </button>

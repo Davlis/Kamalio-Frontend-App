@@ -18,7 +18,7 @@
         </ion-item>
         <ion-row class="bottom-row">
           <ion-col>
-            <button ion-button icon-left clear small [class.active]="post.active" (click)="$event.stopPropagation(); postService.changeUpvote(post.id)">
+            <button ion-button icon-left clear small [class.active]="post.myVote === 1" (click)="$event.stopPropagation(); postService.changeUpvote(post)">
               <ion-icon name="thumbs-up"></ion-icon>
               <div>{{post.rating}}</div>
             </button>

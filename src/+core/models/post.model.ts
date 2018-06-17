@@ -8,8 +8,7 @@ export class Post {
   commentCount: number;
   createdAt: string;
   updatedAt?: string;
+  myVote: number;
 
   thumbPhotoUrl?: string;
-
-  active?: boolean;
 }

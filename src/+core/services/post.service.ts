@@ -32,18 +32,13 @@ export class PostService {
     });
   }
 
-  public createPost(post: Post) {
-    return new Promise((resolve, reject) => {
-      return this.dataService.postData('posts', post);
-    });
+  public async createPost(data: any) {
+    return this.dataService.postData('posts', data);
   }
 
-  public changeUpvote(id: string) {
-    const post = this.currentPosts.find(el => el.id === id);
-
-    if (post) {
-      post.active = !post.active;
-      post.rating += post.active ? 1 : -1;
-    }
+  public changeUpvote(p: Post) {
+    p.myVote = p.myVote === 0 ? 1 : 0;
+    p.rating += p.myVote === 1 ? 1 : -1;
+    this.dataService.postData(`posts/${p.id}/votes`, { value: p.myVote });
   }
 }

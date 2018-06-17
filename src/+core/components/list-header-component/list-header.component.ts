@@ -1,7 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component } from '@angular/core';
 import { LoginService } from '../../services';
-import { ProfilePage } from '../../../pages/profile/profile';
+import { ProfilePage } from '../../../pages/profile';
 
 @Component({
   selector: 'list-header',
