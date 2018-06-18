@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Post, Comment } from '../../+core/models';
-import { PostService, CommentService } from '../../+core/services';
+import { PostService, LoginService, CommentService } from '../../+core/services';
 import { PostListComponent } from '../../+core/components';
 import { TablessPage } from '../../+core/components/tabless-page-component';
 
@@ -16,6 +16,7 @@ export class PostViewPage extends TablessPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public postService: PostService,
+              public loginService: LoginService,
               public commentService: CommentService) {
     super();
 

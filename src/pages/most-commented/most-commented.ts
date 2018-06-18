@@ -18,7 +18,11 @@ export class MostCommentedPage {
               public postService: PostService) {
   }
 
-  public async ionViewWillEnter() {
+  public ionViewWillEnter() {
+    this.reloadPosts();
+  }
+
+  public async reloadPosts() {
     await this.loginService.ready();
 
     const query = {
