@@ -26,7 +26,7 @@ export class GeolocationService {
   private init(readySource: string) {
 
     let watch = this.geolocation.watchPosition()
-      .filter((p) => p.coords !== undefined);
+      .filter((p) =>  p.coords !== undefined);
 
     watch.subscribe((data) => {
 

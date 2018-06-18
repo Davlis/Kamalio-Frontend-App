@@ -1,7 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
-import { Subscription } from 'rxjs';
 import { GeolocationService } from './geolocation.service';
 import { DataService } from './data.service';
 import { TokenService } from './token.service';
@@ -12,7 +11,6 @@ import { EnvVariables } from '../../environment';
 export class LoginService {
 
   public result: GeolocationResultModel;
-  private geolocationSubsciption: Subscription;
 
   public user: User;
   public karma: number;

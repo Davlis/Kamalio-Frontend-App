@@ -36,6 +36,10 @@ export class PostService {
     return this.dataService.postData('posts', data);
   }
 
+  public async editPost(id: string, data: any) {
+    return this.dataService.putData(`posts/${id}`, data);
+  }
+
   public changeUpvote(p: Post) {
     p.myVote = p.myVote === 0 ? 1 : 0;
     p.rating += p.myVote === 1 ? 1 : -1;

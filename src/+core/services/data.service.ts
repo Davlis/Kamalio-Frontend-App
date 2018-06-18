@@ -55,6 +55,16 @@ export class DataService {
           .catch(err => this.handleError(err));
   }
 
+  putData(endpoint: string, data: any): Promise<any> {
+    this.headers.set('Authorization', this.tokenService.accessToken);
+    const url = `${this.URL}/${endpoint}`;
+    return this.http
+          .put(url, JSON.stringify(data), { headers: this.headers })
+          .toPromise()
+          .then(res => res.json())
+          .catch(err => this.handleError(err));
+  }
+
   deleteData(endpoint: string): Promise <any> {
     this.headers.set('Authorization', this.tokenService.accessToken);
     const url = `${this.URL}/${endpoint}`;

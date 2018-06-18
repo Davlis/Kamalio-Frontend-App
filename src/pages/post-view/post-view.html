@@ -30,7 +30,7 @@
             </button>
           </ion-col>
           <ion-col>
-            <button *ngIf="post.userId === loginService.user.id" ion-button icon-right clear small class="right-button" (click)="$event.stopPropagation();">
+            <button *ngIf="post.userId === loginService.user.id" [navPush]="createPostPage" [navParams]="post" ion-button icon-right clear small class="right-button" (click)="$event.stopPropagation();">
               <ion-icon name="create"></ion-icon>
             </button>
           </ion-col>

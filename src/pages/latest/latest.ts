@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { LoginService, PostService } from '../../+core/services';
 import { Post } from '../../+core/models';
 import { ProfilePage } from '../profile/profile';
@@ -13,8 +12,7 @@ export class LatestPage {
   public settingsPage = ProfilePage;
   public latestPosts: Post[];
 
-  constructor(public navCtrl: NavController,
-              public loginService: LoginService,
+  constructor(public loginService: LoginService,
               public postService: PostService) {
   }
 

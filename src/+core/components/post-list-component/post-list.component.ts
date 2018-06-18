@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { PostService } from '../../services';
 import { Post } from '../../models';
 import { PostViewPage } from '../../../pages/post-view';
