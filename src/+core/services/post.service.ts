@@ -10,10 +10,8 @@ export class PostService {
   constructor(private dataService: DataService) {
   }
 
-  public async getPosts(query: any): Promise<Post[]> {
-    this.currentPosts = (await this.dataService.getQueryData('posts', query)).rows;
-
-    return this.currentPosts;
+  public async getPosts(query: any): Promise<any> {
+    return this.dataService.getQueryData('posts', query);
   }
 
   public async createPost(data: any) {

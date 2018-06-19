@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="yellow">
     <ion-buttons end>
-      <button (click)="refreshComments()" ion-button icon-end large>
+      <button (click)="loadComments(true)" ion-button icon-end large>
           <ion-icon name="refresh"></ion-icon>
       </button>
     </ion-buttons>
@@ -12,7 +12,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-refresher (ionRefresh)="refreshComments($event)">
+  <ion-refresher (ionRefresh)="loadComments(true, $event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-card class="post-container">
@@ -66,5 +66,8 @@
         {{c.content}}
       </ion-item>
     </ion-row>
+    <ion-infinite-scroll (ionInfinite)="loadInfite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </ion-card>
 </ion-content>

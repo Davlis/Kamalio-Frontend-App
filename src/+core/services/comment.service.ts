@@ -7,10 +7,8 @@ export class CommentService {
   constructor(private dataService: DataService) {
   }
 
-  public async getComments(postId: string): Promise<Comment[]> {  
-    const comments = (await this.dataService.getQueryData('comments', { postId })).rows;
-
-    return comments;
+  public async getComments(query: any): Promise<any> {
+    return this.dataService.getQueryData('comments', query);
   }
 
   public async createComment(data: any) {

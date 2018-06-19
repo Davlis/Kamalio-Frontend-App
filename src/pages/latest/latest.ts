@@ -11,32 +11,71 @@ export class LatestPage {
 
   public settingsPage = ProfilePage;
   public latestPosts: Post[];
+  public offset: number = 0;
+  public limit: number = 20;
+  public infinite;
 
   constructor(public loginService: LoginService,
               public postService: PostService) {
   }
 
   public ionViewWillEnter() {
-    this.reloadPosts();
+    this.loadPosts(true);
+    if (this.infinite) {
+      this.infinite.enable(true);
+    }
   }
 
-  public async reloadPosts(refresher?) {
+  public async loadPosts(reload?: boolean, refresher?) {
     await this.loginService.ready();
+    let offset;
+
+    if (reload) {
+      this.offset = 0;
+    }
+
+    offset = this.offset;
 
     const query = {
       latitude: this.loginService.get('lat'),
       longitude: this.loginService.get('lon'),
-      section: 'LATEST'
+      section: 'LATEST',
+      offset,
+      limit: this.limit
     };
 
-    this.latestPosts = await this.postService.getPosts(query);
+    const result = await this.postService.getPosts(query);
+
+    if (reload) {
+      this.latestPosts = [];
+
+      if (this.infinite) {
+        this.infinite.enable(true);
+      }
+    }
+
+    this.latestPosts = this.latestPosts.concat(result.rows);
 
     if (refresher) {
       refresher.complete();
     }
+
+    this.offset += this.limit;
+
+    return result.count;
   }
 
   public getRefreshFunction() {
-    return this.reloadPosts.bind(this);
+    return this.loadPosts.bind(this, true);
+  }
+
+  public async loadInfite(infiniteScroll) {
+    const count = await this.loadPosts();
+    infiniteScroll.complete();
+    if (count === this.latestPosts.length) {
+      infiniteScroll.enable(false);
+    }
+
+    this.infinite = infiniteScroll;
   }
 }

@@ -3,8 +3,11 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-refresher (ionRefresh)="reloadPosts($event)">
+  <ion-refresher (ionRefresh)="loadPosts(true, $event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <post-list [posts]="bestPosts"></post-list>
+  <ion-infinite-scroll (ionInfinite)="loadInfite($event)">
+   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
 </ion-content>
