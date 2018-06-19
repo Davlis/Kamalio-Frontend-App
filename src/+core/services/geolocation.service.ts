@@ -19,21 +19,21 @@ export class GeolocationService {
               private platform: Platform) {
 
     this.platform.ready()
-      .then(readySource => this.init(readySource))
+      .then(() => this.init())
       .catch(err => console.error(err));
   }
 
-  private init(readySource: string) {
+  private init() {
 
     let watch = this.geolocation.watchPosition()
-      .filter((p) =>  p.coords !== undefined);
+      .filter((p) => p.coords !== undefined);
 
     watch.subscribe((data) => {
 
       this.lon = data.coords.longitude;
       this.lat = data.coords.latitude;
 
-      if (readySource === 'dom') { // browser
+      if (!(this.platform.is('ios') || this.platform.is('android'))) { // browser
 
         this.reverseResult = {
           countryCode: 'TE',

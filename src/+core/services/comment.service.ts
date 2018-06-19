@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
-import { Comment } from '../models';
 
 @Injectable()
 export class CommentService {

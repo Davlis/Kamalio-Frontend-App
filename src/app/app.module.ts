@@ -3,6 +3,9 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { Camera } from '@ionic-native/camera';
+import { FileTransfer } from '@ionic-native/file-transfer';
 import { MyApp } from './app.component';
 import { EnvironmentsModule } from '../environment';
 
@@ -70,6 +73,9 @@ import { MomentModule } from 'ngx-moment';
   providers: [
     Geolocation,
     Device,
+    ImagePicker,
+    Camera,
+    FileTransfer,
     NativeGeocoder,
     GeolocationService,
     LoginService,

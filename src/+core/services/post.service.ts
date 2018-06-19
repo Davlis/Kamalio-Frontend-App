@@ -5,8 +5,6 @@ import { Post } from '../models';
 @Injectable()
 export class PostService {
 
-  private currentPosts: Post[] = [];
-
   constructor(private dataService: DataService) {
   }
 

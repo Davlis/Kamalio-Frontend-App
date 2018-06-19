@@ -20,7 +20,7 @@ export class LoginService {
               private device: Device,
               @Inject(EnvVariables) private env,
               private dataService: DataService,
-              private tokenService: TokenService) {
+              public tokenService: TokenService) {
 
     this.init();
   }
