@@ -27,7 +27,11 @@ export class PostViewPage extends TablessPage {
     this.refreshComments();
   }
 
-  private async refreshComments() {
+  private async refreshComments(refresher?) {
     this.comments = await this.commentService.getComments(this.post.id);
+
+    if (refresher) {
+      refresher.complete();
+    }
   }
 }

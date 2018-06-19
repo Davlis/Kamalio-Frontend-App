@@ -12,6 +12,9 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="refreshComments($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-card class="post-container">
     <ion-row>
       <ion-col class="info-container">

@@ -20,7 +20,7 @@ export class MostCommentedPage {
     this.reloadPosts();
   }
 
-  public async reloadPosts() {
+  public async reloadPosts(refresher?) {
     await this.loginService.ready();
 
     const query = {
@@ -30,6 +30,10 @@ export class MostCommentedPage {
     };
 
     this.commentedPosts = await this.postService.getPosts(query);
+
+    if (refresher) {
+      refresher.complete();
+    }
   }
 
   public getRefreshFunction() {
