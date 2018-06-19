@@ -24,6 +24,7 @@ export class PostViewPage extends TablessPage {
 
   private init() {
     this.post = this.navParams.data;
+    this.refreshComments();
   }
 
   private async refreshComments() {
