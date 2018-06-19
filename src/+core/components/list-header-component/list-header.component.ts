@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { LoginService } from '../../services';
 import { ProfilePage } from '../../../pages/profile';
 
@@ -8,6 +8,7 @@ import { ProfilePage } from '../../../pages/profile';
 })
 export class ListHeaderComponent {
 
+  @Input() public refreshFunction: Function;
   profilePage = ProfilePage;
 
   constructor(public loginService: LoginService) {

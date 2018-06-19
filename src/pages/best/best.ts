@@ -31,4 +31,8 @@ export class BestPage {
 
     this.bestPosts = await this.postService.getPosts(query);
   }
+
+  public getRefreshFunction() {
+    return this.reloadPosts.bind(this);
+  }
 }

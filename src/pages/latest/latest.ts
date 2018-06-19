@@ -31,4 +31,8 @@ export class LatestPage {
 
     this.latestPosts = await this.postService.getPosts(query);
   }
+
+  public getRefreshFunction() {
+    return this.reloadPosts.bind(this);
+  }
 }

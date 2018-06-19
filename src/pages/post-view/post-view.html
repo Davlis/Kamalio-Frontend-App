@@ -55,7 +55,7 @@
     <ion-row *ngFor="let c of comments">
       <ion-item class="message-container" [class.op]="c.userId === post.userId">
         <span>{{c.createdAt | amTimeAgo}}</span><br /><br />
-        {{c.message}}
+        {{c.content}}
       </ion-item>
     </ion-row>
   </ion-card>

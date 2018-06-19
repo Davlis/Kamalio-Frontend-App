@@ -19,8 +19,14 @@ export class PostViewPage extends TablessPage {
               public loginService: LoginService,
               public commentService: CommentService) {
     super();
+    this.init();
+  }
 
+  private init() {
     this.post = this.navParams.data;
-    this.comments = this.commentService.getComments(this.post.id);
+  }
+
+  private async refreshComments() {
+    this.comments = await this.commentService.getComments(this.post.id);
   }
 }
