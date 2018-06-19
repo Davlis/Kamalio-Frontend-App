@@ -12,4 +12,16 @@ export class CommentService {
 
     return comments;
   }
+
+  public async createComment(data: any) {
+    return this.dataService.postData('comments', data);
+  }
+
+  public async editComment(id: string, data: any) {
+    return this.dataService.putData(`comments/${id}`, data);
+  }
+
+  public async deleteComment(id: string) {
+    return this.dataService.deleteData(`comments/${id}`);
+  }
 }

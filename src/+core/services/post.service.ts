@@ -24,6 +24,10 @@ export class PostService {
     return this.dataService.putData(`posts/${id}`, data);
   }
 
+  public async deletePost(id: string) {
+    return this.dataService.deleteData(`posts/${id}`);
+  }
+
   public changeUpvote(p: Post) {
     p.myVote = p.myVote === 0 ? 1 : 0;
     p.rating += p.myVote === 1 ? 1 : -1;
