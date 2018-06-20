@@ -16,7 +16,7 @@
 }
 
 .content-container ion-label {
-    white-space: inherit;
+    white-space: pre;
     text-overflow: inherit;
 }
 
@@ -34,6 +34,8 @@
     }
 
     ion-label {
+        display: flex;
+        justify-content: space-between;
         white-space: inherit;
         text-overflow: inherit;
         font-size: 13px;

@@ -179,6 +179,7 @@ export class CreatePostPage extends TablessPage {
         headers: { 'Authorization': this.loginService.tokenService.accessToken }
       }).then(result => {
         const res = JSON.parse(result.response) as Post;
+        post.thumbPhotoUrl = res.thumbPhotoUrl;
         post.photoUrl = res.photoUrl;
         resolve();
       }).catch(err => {

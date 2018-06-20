@@ -14,13 +14,13 @@
 
       <ion-row class="bottom-row">
         <ion-col>
-          <button ion-button icon-left clear small [class.active]="p.myVote === 1" (click)="$event.stopPropagation(); postService.changeUpvote(p)">
+          <button ion-button icon-left clear [class.active]="p.myVote === 1" (click)="$event.stopPropagation(); postService.changeUpvote(p)">
             <ion-icon name="thumbs-up"></ion-icon>
             <div>{{p.rating}}</div>
           </button>
         </ion-col>
         <ion-col>
-          <button ion-button icon-left clear small class="disable-hover comments-button" (click)="$event.stopPropagation()">
+          <button ion-button icon-left clear class="disable-hover comments-button" (click)="$event.stopPropagation()">
             <ion-icon name="text"></ion-icon>
             <div>{{p.commentCount}}</div>
           </button>
@@ -29,9 +29,9 @@
         </ion-col>
       </ion-row>
     </ion-col>
-    <ion-col col-4 *ngIf="p.photoUrl">
+    <ion-col col-4 *ngIf="p.thumbPhotoUrl">
 
-      <img [src]="p.photoUrl">
+      <img [src]="p.thumbPhotoUrl">
 
     </ion-col>
   </ion-row>
@@ -44,7 +44,7 @@
       </ion-note>
     </ion-item>
 
-    <img *ngIf="p.photoUrl" [src]="p.photoUrl">
+    <img *ngIf="p.thumbPhotoUrl" [src]="p.thumbPhotoUrl">
 
     <ion-card-content>
       <p>{{getShortenedContent(p.content)}}</p>
