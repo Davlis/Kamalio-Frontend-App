@@ -147,7 +147,6 @@ export class CreateCommentPage extends TablessPage {
               loading.dismiss();
 
               this.navCtrl.pop();
-              this.navCtrl.pop();
             }).catch(err => {
               loading.dismiss();
 
