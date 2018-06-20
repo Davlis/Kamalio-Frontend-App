@@ -29,9 +29,9 @@
         </ion-col>
       </ion-row>
     </ion-col>
-    <ion-col col-4 *ngIf="p.thumbPhotoUrl">
+    <ion-col col-4 *ngIf="p.thumbPhotoUrl" (click)="$event.stopPropagation(); showPhoto(p)">
 
-      <img [src]="p.thumbPhotoUrl">
+      <img [src]="p.thumbPhotoUrl" />
 
     </ion-col>
   </ion-row>
@@ -44,7 +44,7 @@
       </ion-note>
     </ion-item>
 
-    <img *ngIf="p.thumbPhotoUrl" [src]="p.thumbPhotoUrl">
+    <img *ngIf="p.thumbPhotoUrl" [src]="p.thumbPhotoUrl" (click)="$event.stopPropagation(); showPhoto(p)" />
 
     <ion-card-content>
       <p>{{getShortenedContent(p.content)}}</p>

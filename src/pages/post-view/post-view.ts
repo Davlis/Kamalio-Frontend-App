@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavParams, Nav, Events } from 'ionic-angular';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+
 import { Post, Comment } from '../../+core/models';
 import { PostService, LoginService, CommentService } from '../../+core/services';
 import { TablessPage } from '../../+core/components/tabless-page-component';
@@ -24,7 +26,8 @@ export class PostViewPage extends TablessPage {
               public postService: PostService,
               public loginService: LoginService,
               private commentService: CommentService,
-              private events: Events) {
+              private events: Events,
+              private photoViewer: PhotoViewer) {
     super();
     this.init();
   }
@@ -94,5 +97,9 @@ export class PostViewPage extends TablessPage {
     }
 
     this.infinite = infiniteScroll;
+  }
+
+  public showPhoto(post: Post) {
+    this.photoViewer.show(post.photoUrl, post.title);
   }
 }
