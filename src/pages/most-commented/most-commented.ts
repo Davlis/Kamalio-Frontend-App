@@ -14,6 +14,7 @@ export class MostCommentedPage {
   public commentedPosts: Post[];
   public offset: number = 0;
   public limit: number = 20;
+  public queryTime: Date = new Date();
   public infinite;
 
   constructor(public loginService: LoginService,
@@ -33,6 +34,7 @@ export class MostCommentedPage {
 
     if (reload) {
       this.offset = 0;
+      this.queryTime = new Date();
     }
 
     offset = this.offset;
@@ -42,7 +44,8 @@ export class MostCommentedPage {
       longitude: this.loginService.get('lon'),
       section: 'LOUDEST',
       offset,
-      limit: this.limit
+      limit: this.limit,
+      queryTime: this.queryTime.toISOString()
     };
 
     const result = await this.postService.getPosts(query);

@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+
 import { PostService } from '../../services';
 import { Post } from '../../models';
 import { PostViewPage } from '../../../pages/post-view';
@@ -13,7 +15,8 @@ export class PostListComponent {
 
   @Input() public posts: Post[];
 
-  constructor(public postService: PostService) {
+  constructor(public postService: PostService,
+              private photoViewer: PhotoViewer) {
   }
 
   public getShortenedContent(content: string) {
@@ -22,5 +25,9 @@ export class PostListComponent {
     }
 
     return content;
+  }
+
+  public showPhoto(post: Post) {
+    this.photoViewer.show(post.photoUrl, post.title);
   }
 }

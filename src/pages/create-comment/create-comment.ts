@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, Events } from 'ionic-angular';
+import { NavController, NavParams, ToastController, Events, LoadingController } from 'ionic-angular';
+import { Dialogs } from '@ionic-native/dialogs';
+
 import { TablessPage } from '../../+core/components/tabless-page-component';
 import { CommentService, LoginService } from '../../+core/services';
 import { Comment } from '../../+core/models';
@@ -18,7 +20,9 @@ export class CreateCommentPage extends TablessPage {
               private toastCtrl: ToastController,
               private navCtrl: NavController,
               private navParams: NavParams,
-              private events: Events) {
+              private events: Events,
+              private loadingCtrl: LoadingController,
+              private dialogs: Dialogs) {
     super();
   }
 
@@ -70,6 +74,12 @@ export class CreateCommentPage extends TablessPage {
       content: this.content
     };
 
+    const loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    loading.present();
+
     this.commentService.editComment(this.prevComment.id, comment)
       .then(async result => {
 
@@ -77,11 +87,14 @@ export class CreateCommentPage extends TablessPage {
 
         this.content = '';
         this.prevComment = null;
+        loading.dismiss();
 
         this.createToast('Comment updated');
 
         this.navCtrl.pop();
       }).catch(err => {
+        loading.dismiss();
+
         this.createToast('Error while updating comment');
       });
   }
@@ -92,16 +105,58 @@ export class CreateCommentPage extends TablessPage {
       content: this.content
     };
 
+    const loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    loading.present();
+
     this.commentService.createComment(comment)
       .then(async result => {
         this.content = '';
+
+        loading.dismiss();
+
         this.createToast('Comment created');
 
         this.navCtrl.pop();
 
         this.events.publish('comment:created', result);
       }).catch(err => {
+        loading.dismiss();
+
         this.createToast('Error while creating comment');
+      });
+  }
+
+  private deleteComment() {
+    const labels = ['Yes', 'No'];
+
+    this.dialogs.confirm('Are you sure you want to delete?', 'Confirmation', labels)
+      .then((index) => {
+        if (index === 1) {
+
+          const loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+          });
+
+          loading.present();
+
+          this.commentService.deleteComment(this.prevComment.id)
+            .then(() => {
+              loading.dismiss();
+
+              this.navCtrl.pop();
+            }).catch(err => {
+              loading.dismiss();
+
+              this.createToast('Error while removing post');
+            });
+        }
+      }, (err) => {
+        console.error(err);
+      }).catch(err => {
+        console.error(err);
       });
   }
 }

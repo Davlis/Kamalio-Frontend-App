@@ -16,6 +16,9 @@
       <ion-label color="primary" stacked>Content</ion-label>
       <ion-textarea placeholder="Your message..." rows="8" [(ngModel)]="content"></ion-textarea>
     </ion-item>
+    <ion-item *ngIf="prevPost">
+      <button ion-button default full color="danger" (click)="deletePost()"><ion-icon name="trash"></ion-icon></button>
+    </ion-item>
     <ion-item *ngIf="!prevPost">
       <div>
         <div class="image-pick">
