@@ -1,18 +1,21 @@
-import { Component } from '@angular/core';
-import { NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavParams, Nav, Events } from 'ionic-angular';
 import { Post, Comment } from '../../+core/models';
 import { PostService, LoginService, CommentService } from '../../+core/services';
 import { TablessPage } from '../../+core/components/tabless-page-component';
 import { CreatePostPage } from '../create-post';
+import { CreateCommentPage } from '../create-comment';
 
 @Component({
   selector: 'post-view',
   templateUrl: 'post-view.html'
 })
 export class PostViewPage extends TablessPage {
+  @ViewChild(Nav) nav: Nav;
   public post: Post;
   public comments: Comment[] = [];
   public createPostPage = CreatePostPage;
+  public createCommentPage = CreateCommentPage;
   public offset: number = 0;
   public limit: number = 20;
   public infinite;
@@ -20,7 +23,8 @@ export class PostViewPage extends TablessPage {
   constructor(public navParams: NavParams,
               public postService: PostService,
               public loginService: LoginService,
-              public commentService: CommentService) {
+              private commentService: CommentService,
+              private events: Events) {
     super();
     this.init();
   }
@@ -31,6 +35,19 @@ export class PostViewPage extends TablessPage {
     if (this.infinite) {
       this.infinite.enable(true);
     }
+  }
+
+  public ionViewDidLoad() {
+    this.events.subscribe('comment:created', async (commentData) => {
+      this.loadComments(true);
+      if (this.infinite) {
+        this.infinite.enable(true);
+      }
+    });
+  }
+
+  public ionViewWillUnload() {
+    this.events.unsubscribe('comment:created');
   }
 
   private async loadComments(reload?: boolean, refresher?) {

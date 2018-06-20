@@ -4,11 +4,10 @@ export class Post {
   title: string;
   content: string;
   photoUrl?: string;
+  thumbPhotoUrl?: string;
   rating: number;
   commentCount: number;
   createdAt: string;
   updatedAt?: string;
   myVote: number;
-
-  thumbPhotoUrl?: string;
 }

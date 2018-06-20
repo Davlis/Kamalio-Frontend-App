@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar color="yellow">
+    <ion-title>
+      {{prevComment ? 'Edit comment' : 'Create comment'}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary" stacked>Content</ion-label>
+      <ion-textarea placeholder="Your message..." rows="8" [(ngModel)]="content"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <button ion-button default full color="primary" (click)="checkComment()">Send</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

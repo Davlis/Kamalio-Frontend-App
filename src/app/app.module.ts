@@ -11,6 +11,7 @@ import { EnvironmentsModule } from '../environment';
 
 import {
   CreatePostPage,
+  CreateCommentPage,
   ProfilePage,
   PostViewPage,
   LatestPage,
@@ -42,6 +43,7 @@ import { MomentModule } from 'ngx-moment';
     MyApp,
     ProfilePage,
     CreatePostPage,
+    CreateCommentPage,
     PostViewPage,
     ListHeaderComponent,
     PostListComponent,
@@ -61,6 +63,7 @@ import { MomentModule } from 'ngx-moment';
   entryComponents: [
     MyApp,
     CreatePostPage,
+    CreateCommentPage,
     ProfilePage,
     PostViewPage,
     ListHeaderComponent,
