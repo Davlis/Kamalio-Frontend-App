@@ -3,6 +3,8 @@ import { NavController, NavParams, ToastController, Events, Platform } from 'ion
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { Dialogs } from '@ionic-native/dialogs';
+
 import { TablessPage } from '../../+core/components/tabless-page-component';
 import { PostService, LoginService } from '../../+core/services';
 import { Post } from '../../+core/models';
@@ -29,6 +31,7 @@ export class CreatePostPage extends TablessPage {
               private camera: Camera,
               private platform: Platform,
               private transfer: FileTransfer,
+              private dialogs: Dialogs,
               @Inject(EnvVariables) private env) {
     super();
     this.fileTransfer = this.transfer.create();
@@ -186,5 +189,26 @@ export class CreatePostPage extends TablessPage {
         reject();
       });
     });
+  }
+
+  private deletePost() {
+    const labels = ['Yes', 'No'];
+
+    this.dialogs.confirm('Are you sure you want to delete?', 'Confirmation', labels)
+      .then((index) => {
+        if (index === 1) {
+          this.postService.deletePost(this.prevPost.id)
+            .then(() => {
+              this.navCtrl.pop();
+              this.navCtrl.pop();
+            }).catch(err => {
+              this.createToast('Error while removing post');
+            });
+        }
+      }, (err) => {
+        console.error(err);
+      }).catch(err => {
+        console.error(err);
+      });
   }
 }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController, Events } from 'ionic-angular';
+import { Dialogs } from '@ionic-native/dialogs';
+
 import { TablessPage } from '../../+core/components/tabless-page-component';
 import { CommentService, LoginService } from '../../+core/services';
 import { Comment } from '../../+core/models';
@@ -18,7 +20,8 @@ export class CreateCommentPage extends TablessPage {
               private toastCtrl: ToastController,
               private navCtrl: NavController,
               private navParams: NavParams,
-              private events: Events) {
+              private events: Events,
+              private dialogs: Dialogs) {
     super();
   }
 
@@ -102,6 +105,27 @@ export class CreateCommentPage extends TablessPage {
         this.events.publish('comment:created', result);
       }).catch(err => {
         this.createToast('Error while creating comment');
+      });
+  }
+
+  private deleteComment() {
+    const labels = ['Yes', 'No'];
+
+    this.dialogs.confirm('Are you sure you want to delete?', 'Confirmation', labels)
+      .then((index) => {
+        if (index === 1) {
+          this.commentService.deleteComment(this.prevComment.id)
+            .then(() => {
+              this.navCtrl.pop();
+              this.navCtrl.pop();
+            }).catch(err => {
+              this.createToast('Error while removing post');
+            });
+        }
+      }, (err) => {
+        console.error(err);
+      }).catch(err => {
+        console.error(err);
       });
   }
 }

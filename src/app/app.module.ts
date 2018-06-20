@@ -6,6 +6,7 @@ import { Device } from '@ionic-native/device';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Camera } from '@ionic-native/camera';
 import { FileTransfer } from '@ionic-native/file-transfer';
+import { Dialogs } from '@ionic-native/dialogs';
 import { MyApp } from './app.component';
 import { EnvironmentsModule } from '../environment';
 
@@ -79,6 +80,7 @@ import { MomentModule } from 'ngx-moment';
     ImagePicker,
     Camera,
     FileTransfer,
+    Dialogs,
     NativeGeocoder,
     GeolocationService,
     LoginService,

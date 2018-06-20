@@ -12,6 +12,9 @@
       <ion-label color="primary" stacked>Content</ion-label>
       <ion-textarea placeholder="Your message..." rows="8" [(ngModel)]="content"></ion-textarea>
     </ion-item>
+    <ion-item *ngIf="prevComment">
+      <button ion-button default full color="danger" (click)="deleteComment()"><ion-icon name="trash"></ion-icon></button>
+    </ion-item>
     <ion-item>
       <button ion-button default full color="primary" (click)="checkComment()">Send</button>
     </ion-item>
