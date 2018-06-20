@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { NavController, NavParams, ToastController, Events, Platform } from 'ionic-angular';
+import { NavController, NavParams, ToastController, Events, Platform, LoadingController } from 'ionic-angular';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
@@ -32,6 +32,7 @@ export class CreatePostPage extends TablessPage {
               private platform: Platform,
               private transfer: FileTransfer,
               private dialogs: Dialogs,
+              private loadingCtrl: LoadingController,
               @Inject(EnvVariables) private env) {
     super();
     this.fileTransfer = this.transfer.create();
@@ -85,6 +86,12 @@ export class CreatePostPage extends TablessPage {
       content: this.content
     };
 
+    const loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    loading.present();
+
     this.postService.editPost(this.prevPost.id, post)
       .then(async result => {
 
@@ -95,10 +102,13 @@ export class CreatePostPage extends TablessPage {
         this.content = '';
         this.prevPost = null;
 
+        loading.dismiss();
+
         this.createToast('Post updated');
 
         this.navCtrl.pop();
       }).catch(err => {
+        loading.dismiss();
         this.createToast('Error while updating post');
       });
   }
@@ -111,16 +121,26 @@ export class CreatePostPage extends TablessPage {
       longitude: this.loginService.get('lon')
     };
 
+    const loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    loading.present();
+
     this.postService.createPost(post)
       .then(async result => {
         await this.uploadFile(result.post);
 
         this.title = '';
         this.content = '';
+
+        loading.dismiss();
+
         this.createToast('Post created');
 
         this.events.publish('post:created', result.post);
       }).catch(err => {
+        loading.dismiss();
         this.createToast('Error while creating post');
       });
   }
@@ -197,11 +217,20 @@ export class CreatePostPage extends TablessPage {
     this.dialogs.confirm('Are you sure you want to delete?', 'Confirmation', labels)
       .then((index) => {
         if (index === 1) {
+
+          const loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+          });
+
+          loading.present();
+
           this.postService.deletePost(this.prevPost.id)
             .then(() => {
+              loading.dismiss();
               this.navCtrl.pop();
               this.navCtrl.pop();
             }).catch(err => {
+              loading.dismiss();
               this.createToast('Error while removing post');
             });
         }
