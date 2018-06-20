@@ -49,7 +49,7 @@
           </ion-col>
         </ion-row>
       </ion-col>
-      <ion-col *ngIf="post.thumbPhotoUrl" col-3 class="image-container" (click)="showPhoto(p)">
+      <ion-col *ngIf="post.thumbPhotoUrl" col-3 class="image-container" (click)="showPhoto(post)">
         <img [src]="post.thumbPhotoUrl">
       </ion-col>
     </ion-row>

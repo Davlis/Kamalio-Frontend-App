@@ -13,6 +13,7 @@ export class LatestPage {
   public latestPosts: Post[];
   public offset: number = 0;
   public limit: number = 20;
+  public queryTime: Date = new Date();
   public infinite;
 
   constructor(public loginService: LoginService,
@@ -32,6 +33,7 @@ export class LatestPage {
 
     if (reload) {
       this.offset = 0;
+      this.queryTime = new Date();
     }
 
     offset = this.offset;
@@ -41,7 +43,8 @@ export class LatestPage {
       longitude: this.loginService.get('lon'),
       section: 'LATEST',
       offset,
-      limit: this.limit
+      limit: this.limit,
+      queryTime: this.queryTime.toISOString()
     };
 
     const result = await this.postService.getPosts(query);

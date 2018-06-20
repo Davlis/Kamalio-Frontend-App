@@ -19,7 +19,9 @@ export class MyApp {
               private splashScreen: SplashScreen,
               private loginService: LoginService,
               private events: Events) {
-    this.platform.ready().then(() => {
+    this.platform.ready()
+    .then(() => this.loginService.ready())
+    .then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
