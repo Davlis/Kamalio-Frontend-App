@@ -3,8 +3,13 @@
     <ion-col>
       <ion-item>
         <h2 class="title">{{p.title}}</h2>
-        <ion-note>
-          {{p.createdAt | amTimeAgo}}
+        <ion-note class="place-and-time">
+          <div>
+            {{p.createdAt | amTimeAgo}}
+          </div>
+          <div>
+            {{p?.PostLocation.distance.replace('_', ' ').toLowerCase()}}
+          </div>
         </ion-note>
       </ion-item>
 

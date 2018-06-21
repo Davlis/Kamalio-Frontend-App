@@ -19,6 +19,11 @@
     pointer: default;
 }
 
+.place-and-time {
+    display: flex;
+    justify-content: space-between;
+}
+
 @media (max-width: 480px) {
     .horizontal-view {
         display: none;

@@ -21,4 +21,11 @@ export class CommentService {
   public async deleteComment(id: string) {
     return this.dataService.deleteData(`comments/${id}`);
   }
+
+  public async changeUpvote(c: Comment) {
+    /*c.myVote = c.myVote === 0 ? 1 : 0;
+    c.rating += c.myVote === 1 ? 1 : -1;
+
+    await this.dataService.postData(`comments/${p.id}/votes`, { value: c.myVote });*/
+  }
 }

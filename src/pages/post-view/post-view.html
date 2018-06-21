@@ -64,7 +64,7 @@
       </ion-item>
     </ion-row>
     <ion-row *ngFor="let c of comments">
-      <ion-item class="message-container" [class.op]="c.userId === post.userId">
+      <ion-item class="message-container" [class.op]="c.userId === post.userId" [class.my]="c.userId === loginService.user.id && c.userId !== post.userId">
         <div>
           <span>{{c.createdAt | amTimeAgo}}</span><br /><br />
           {{c.content}}
@@ -72,6 +72,9 @@
         <div>
           <button *ngIf="c.userId === loginService.user.id" ion-button icon-center clear small class="right-button" [navPush]="createCommentPage" [navParams]="c" (click)="$event.stopPropagation()">
             <ion-icon name="create"></ion-icon>
+          </button>
+          <button *ngIf="c.userId !== loginService.user.id" ion-button icon-center clear small class="right-button" [class.active]="c.myVote === 1" (click)="$event.stopPropagation(); commentService.changeUpvote(c)">
+            <ion-icon name="thumbs-up"></ion-icon>
           </button>
         </div>
       </ion-item>

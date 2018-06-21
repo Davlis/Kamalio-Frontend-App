@@ -47,10 +47,18 @@ export class PostViewPage extends TablessPage {
         this.infinite.enable(true);
       }
     });
+
+    this.events.subscribe('comment:deleted', async () => {
+      this.loadComments(true);
+      if (this.infinite) {
+        this.infinite.enable(true);
+      }
+    });
   }
 
   public ionViewWillUnload() {
     this.events.unsubscribe('comment:created');
+    this.events.unsubscribe('comment:deleted');
   }
 
   private async loadComments(reload?: boolean, refresher?) {

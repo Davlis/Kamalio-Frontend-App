@@ -96,7 +96,7 @@ export class LoginService {
     });
   };
 
-  private async getKarma() {
+  public async getKarma() {
     this.dataService.getData('users/karma')
       .then(result => {
         this.karma = result.value;

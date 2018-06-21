@@ -66,6 +66,8 @@ export class MostCommentedPage {
 
     this.offset += this.limit;
 
+    await this.loginService.getKarma();
+
     return result.count;
   }
 

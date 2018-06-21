@@ -147,6 +147,8 @@ export class CreateCommentPage extends TablessPage {
               loading.dismiss();
 
               this.navCtrl.pop();
+
+              this.events.publish('comment:deleted');
             }).catch(err => {
               loading.dismiss();
 

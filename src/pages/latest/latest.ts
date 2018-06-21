@@ -65,6 +65,8 @@ export class LatestPage {
 
     this.offset += this.limit;
 
+    await this.loginService.getKarma();
+
     return result.count;
   }
 
