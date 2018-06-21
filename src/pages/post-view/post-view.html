@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-navbar color="yellow">
+    <ion-buttons end>
+      <button (click)="loadComments(true)" ion-button icon-end large>
+          <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      Comments
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="loadComments(true, $event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card class="post-container">
+    <ion-row>
+      <ion-col class="info-container">
+        <ion-item>
+          <h2 class="title">{{post.title}}</h2>
+          <ion-note>
+            {{post.createdAt | amTimeAgo}}
+          </ion-note>
+        </ion-item>
+        <ion-row class="bottom-row">
+          <ion-col>
+            <button ion-button icon-left clear [class.active]="post.myVote === 1" (click)="$event.stopPropagation(); postService.changeUpvote(post)">
+              <ion-icon name="thumbs-up"></ion-icon>
+              <div>{{post.rating}}</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-left clear class="disable-hover comments-button" (click)="$event.stopPropagation()">
+              <ion-icon name="text"></ion-icon>
+              <div>{{post.commentCount}}</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button *ngIf="post.userId === loginService.user.id" ion-button icon-center clear class="right-button" [navPush]="createPostPage" [navParams]="post" (click)="$event.stopPropagation()">
+              <ion-icon name="create"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-center clear class="right-button" [navPush]="createCommentPage" [navParams]="post.id" (click)="$event.stopPropagation()">
+              <ion-icon name="undo"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col *ngIf="post.thumbPhotoUrl" col-3 class="image-container" (click)="showPhoto(post)">
+        <img [src]="post.thumbPhotoUrl">
+      </ion-col>
+    </ion-row>
+    <hr>
+    <ion-row>
+      <ion-item class="content-container">{{post.content}}</ion-item>
+    </ion-row>
+    <hr class="comments-line">
+    <ion-row *ngIf="comments?.length">
+      <ion-item>
+        Comments
+      </ion-item>
+    </ion-row>
+    <ion-row *ngFor="let c of comments">
+      <ion-item class="message-container" [class.op]="c.userId === post.userId" [class.my]="c.userId === loginService.user.id && c.userId !== post.userId">
+        <div>
+          <span>{{c.createdAt | amTimeAgo}}</span><br /><br />
+          {{c.content}}
+        </div>
+        <div>
+          <button *ngIf="c.userId === loginService.user.id" ion-button icon-center clear small class="right-button" [navPush]="createCommentPage" [navParams]="c" (click)="$event.stopPropagation()">
+            <ion-icon name="create"></ion-icon>
+          </button>
+          <button *ngIf="c.userId !== loginService.user.id" ion-button icon-center clear small class="right-button" [class.active]="c.myVote === 1" (click)="$event.stopPropagation(); commentService.changeUpvote(c)">
+            <ion-icon name="thumbs-up"></ion-icon>
+          </button>
+        </div>
+      </ion-item>
+    </ion-row>
+    <ion-infinite-scroll (ionInfinite)="loadInfite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-card>
+</ion-content>

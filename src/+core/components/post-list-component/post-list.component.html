@@ -1,0 +1,75 @@
+<ion-card *ngFor="let p of posts" class="post-card" [navPush]="postPage" [navParams]="p">
+  <ion-row class="horizontal-view">
+    <ion-col>
+      <ion-item>
+        <h2 class="title">{{p.title}}</h2>
+        <ion-note class="place-and-time">
+          <div>
+            {{p.createdAt | amTimeAgo}}
+          </div>
+          <div>
+            {{p?.PostLocation.distance.replace('_', ' ').toLowerCase()}}
+          </div>
+        </ion-note>
+      </ion-item>
+
+      <ion-card-content>
+        <p>{{getShortenedContent(p.content)}}</p>
+      </ion-card-content>
+
+      <ion-row class="bottom-row">
+        <ion-col>
+          <button ion-button icon-left clear [class.active]="p.myVote === 1" (click)="$event.stopPropagation(); postService.changeUpvote(p)">
+            <ion-icon name="thumbs-up"></ion-icon>
+            <div>{{p.rating}}</div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-left clear class="disable-hover comments-button" (click)="$event.stopPropagation()">
+            <ion-icon name="text"></ion-icon>
+            <div>{{p.commentCount}}</div>
+          </button>
+        </ion-col>
+        <ion-col center text-center>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+    <ion-col col-4 *ngIf="p.thumbPhotoUrl" (click)="$event.stopPropagation(); showPhoto(p)">
+
+      <img [src]="p.thumbPhotoUrl" />
+
+    </ion-col>
+  </ion-row>
+
+  <ion-col class="vertical-view">
+    <ion-item>
+      <h2 class="title">{{p.title}}</h2>
+      <ion-note>
+        {{p.createdAt | amTimeAgo}}
+      </ion-note>
+    </ion-item>
+
+    <img *ngIf="p.thumbPhotoUrl" [src]="p.thumbPhotoUrl" (click)="$event.stopPropagation(); showPhoto(p)" />
+
+    <ion-card-content>
+      <p>{{getShortenedContent(p.content)}}</p>
+    </ion-card-content>
+
+    <ion-row class="bottom-row">
+      <ion-col>
+        <button ion-button icon-left clear small [class.active]="p.myVote === 1" (click)="$event.stopPropagation(); postService.changeUpvote(p)">
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>{{p.rating}}</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small  class="disable-hover comments-button" (click)="$event.stopPropagation()">
+          <ion-icon name="text"></ion-icon>
+          <div>{{p.commentCount}}</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+      </ion-col>
+    </ion-row>
+  </ion-col>
+</ion-card>

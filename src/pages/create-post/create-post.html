@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar color="yellow">
+    <ion-title>
+      {{prevPost ? 'Edit post' : 'Create post'}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary" stacked>Title</ion-label>
+      <ion-input type="text" placeholder="Title" [(ngModel)]="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Content</ion-label>
+      <ion-textarea placeholder="Your message..." rows="8" [(ngModel)]="content"></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="prevPost">
+      <button ion-button default full color="danger" (click)="deletePost()"><ion-icon name="trash"></ion-icon></button>
+    </ion-item>
+    <ion-item *ngIf="!prevPost">
+      <div>
+        <div class="image-pick">
+          <button ion-button default full color="secondary" (click)="getFilePermission()"><ion-icon name="images"></ion-icon></button>
+          <button ion-button default full color="secondary" (click)="getPhoto()"><ion-icon name="camera"></ion-icon></button>
+        </div>
+        <div *ngIf="uri">
+          <img [src]="uri" />
+        </div>
+      </div>
+    </ion-item>
+    <ion-item>
+      <button ion-button default full color="primary" (click)="checkPost()">Send</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

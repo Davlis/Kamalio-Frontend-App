@@ -1,0 +1,15 @@
+<ion-navbar color="yellow">
+  <ion-buttons end>
+    <button *ngIf="refreshFunction" (click)="refreshFunction()" ion-button icon-end large>
+        <ion-icon name="refresh"></ion-icon>
+    </button>
+    <span>&nbsp;</span>
+    <button ion-button icon-end large [navPush]="profilePage">
+      {{loginService.karma}}
+      <ion-icon name="contact"></ion-icon>
+    </button>
+  </ion-buttons>
+  <ion-title>
+    {{loginService.get('locality', true)}}<ng-content></ng-content>
+  </ion-title>
+</ion-navbar>

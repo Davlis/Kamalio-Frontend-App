@@ -1,0 +1,13 @@
+<ion-header>
+    <list-header [refreshFunction]="getRefreshFunction()">Most Commented</list-header>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="loadPosts(true, $event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <post-list [posts]="commentedPosts"></post-list>
+  <ion-infinite-scroll (ionInfinite)="loadInfite($event)">
+   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
+</ion-content>
