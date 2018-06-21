@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
+import { Comment } from '../models';
 
 @Injectable()
 export class CommentService {
@@ -23,9 +24,8 @@ export class CommentService {
   }
 
   public async changeUpvote(c: Comment) {
-    /*c.myVote = c.myVote === 0 ? 1 : 0;
-    c.rating += c.myVote === 1 ? 1 : -1;
+    c.myVote = c.myVote === 0 ? 1 : 0;
 
-    await this.dataService.postData(`comments/${p.id}/votes`, { value: c.myVote });*/
+    await this.dataService.postData(`comments/${c.id}/votes`, { value: c.myVote });
   }
 }
